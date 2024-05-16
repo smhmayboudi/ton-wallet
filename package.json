@@ -20,8 +20,13 @@
     "posttest": "npm run lint"
   },
   "devDependencies": {
+    "@types/node": "^20.12.12",
     "gts": "^5.3.0",
-    "typescript": "~5.4.3",
-    "@types/node": "20.11.5"
+    "typescript": "~5.2.0"
+  },
+  "dependencies": {
+    "@ton/core": "^0.56.3",
+    "@ton/crypto": "^3.2.0",
+    "@ton/ton": "^13.11.1"
   }
 }

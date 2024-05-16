@@ -1,26 +1,20 @@
-console.log("Try npm run lint/fix!");
+import {mnemonicToWalletKey} from '@ton/crypto';
+import {WalletContractV4} from '@ton/ton';
 
-const longString = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut aliquet diam.';
+async function main() {
+  // open wallet v4 (notice the correct wallet version here)
+  const mnemonic = 'unfold sugar water ...'; // your 24 secret words (replace ... with the rest of the words)
+  const key = await mnemonicToWalletKey(mnemonic.split(' '));
+  const wallet = WalletContractV4.create({
+    publicKey: key.publicKey,
+    workchain: 0,
+  });
 
-const trailing = 'Semicolon'
+  // print wallet address
+  console.log(wallet.address.toString({testOnly: true}));
 
-			const why={am:'I tabbed?'};
-
-const iWish = "I didn't have a trailing space..."; 
-
-const sicilian = true;;
-
-const vizzini = (!!sicilian) ? !!!sicilian : sicilian;
-
-const re = /foo   bar/;
-
-export function doSomeStuff(withThis: string, andThat: string, andThose: string[]) {
-    //function on one line
-    if(!Boolean(andThose.length)) {return false;}
-    console.log(withThis);
-    console.log(andThat);
-    console.dir(andThose);
-    console.log(longString, trailing, why, iWish, vizzini, re);
-    return;
+  // print wallet workchain
+  console.log('workchain:', wallet.address.workChain);
 }
-// TODO: more examples
+
+main();
