@@ -2,11 +2,15 @@ import {mnemonicToKeyPair} from 'tonweb-mnemonic';
 import TonWeb from 'tonweb';
 
 async function main() {
-  const mnemonic = 'unfold sugar water ...'; // your 24 secret words (replace ... with the rest of the words)
+  const mnemonic =
+    'table jungle security cargo adjust barrel dance net permit pig soap simple rabbit upgrade unique update firm between deer minor ship thought ride physical.'; // your 24 secret words (replace ... with the rest of the words)
   const key = await mnemonicToKeyPair(mnemonic.split(' '));
 
   // open wallet v4 (notice the correct wallet version here)
   const tonweb = new TonWeb();
+  //const tonweb = new TonWeb(new TonWeb.HttpProvider("https://testnet.toncenter.com/api/v2/jsonRPC", { apiKey: "f20ff0043ded8c132d0b4b870e678b4bbab3940788cbb8c8762491935cf3a460" }));
+
+  // open wallet v4 (notice the correct wallet version here)
   const WalletClass = tonweb.wallet.all['v4R2'];
   const wallet = new WalletClass(undefined!, {publicKey: key.publicKey});
 

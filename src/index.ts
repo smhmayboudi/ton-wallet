@@ -4,7 +4,8 @@ import {WalletContractV4, TonClient, fromNano, internal} from '@ton/ton';
 
 async function main() {
   // open wallet v4 (notice the correct wallet version here)
-  const mnemonic = 'unfold sugar water ...'; // your 24 secret words (replace ... with the rest of the words)
+  const mnemonic =
+    'table jungle security cargo adjust barrel dance net permit pig soap simple rabbit upgrade unique update firm between deer minor ship thought ride physical'; // your 24 secret words (replace ... with the rest of the words)
   const key = await mnemonicToWalletKey(mnemonic.split(' '));
   const wallet = WalletContractV4.create({
     publicKey: key.publicKey,
@@ -29,6 +30,7 @@ async function main() {
   const walletContract = client.open(wallet);
   const seqno = await walletContract.getSeqno();
   console.log('seqno:', seqno);
+  console.log('seqno:', seqno >= 1 ? 'more than 1' : 'less than 1');
 
   // make sure wallet is deployed
   if (!(await client.isContractDeployed(wallet.address))) {
